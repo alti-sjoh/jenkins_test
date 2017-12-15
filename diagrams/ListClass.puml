@@ -1,0 +1,61 @@
+@startuml
+
+class ListView {
+..어댑터..
+- Object adapter;
+.. 아이템 ..
+- Array items // Item 객체 배열
+
+.. 방향 ..
+- int TYPE_VERTICAL = 0
+- int TYPE_HORIZONTAL = 1
+- int direction = TYPE_VERTICAL;
+
+.. 디자인 ..
+- Object listCss = null; // list 의 Left, Top 등의 속성 값 설정
+- int interval = 0 // Item 간 간격, 음수 값도 가능
+__ Method __
++ void setAdapter()
++ void setDirection()
++ void setCss()
++ void setInterval(int interval)
+- void createList()
+}
+
+class FocusableListView {
+.. 페이지 ..
+#int pagePerItem // 페이지 당 보여줄 아이템 개수
+#int totalPage
+#int curPage
+
+.. 포커스 ..
+#int focusedIndex // 포커스 인덱스
+#boolean isFocused
+__ Method __
++ void update();
++ void setPagePerItem()
++ void setFocused()
++ void setFocusIndex()
++ void setOnFocusChangeListener();
++ void setOnFocusIndexChangeListener();
+}
+
+class ListAdapter {
+__ Method __
++ ListAdapter(items)
+..아이템..
++ void setItems(Array items)
++ Array getItems()
++ int getCount() // 아이템의 갯수
+..Tag..
++ Object getTag(position, item) //각 item 의 Tag 정보 반환
+}
+
+class FocusableListAdapter {
+__ Method __
++ Object getTag(position, item, isFocus, focusIndex)
+}
+
+ListView <|-- FocusableListView
+ListAdapter <|-- FocusableListAdapter
+@enduml

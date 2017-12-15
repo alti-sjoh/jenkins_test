@@ -1,0 +1,11 @@
+.TextView {
+    width: 30%;
+}
+
+.TextView.focus {
+    background: red;
+}
+
+.TextView.un-focus {
+    background: gray;
+}

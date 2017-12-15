@@ -1,0 +1,39 @@
+@startuml
+
+class View {
+MVC 패턴의 View 역할
+HTML, Class 를 조작하여, 화면을 구성하는 요소
+__ Variable __
++ Object element = null // View DOM 객체
++ int id = 0 // 식별 아이디
++ boolean isFocus = false // 포커스 여부
++ boolean isSelect = false // 선택 여부
+__ Method __
+..Lifecycle..
++ void create()
++ void show()
++ void hide()
++ void destroy()
+..
++ Object getElement()
++ boolean getFocus()
++ boolean setFocus(isFocus)
++ boolean getSelect()
++ boolean setSelect()
+}
+
+class Component {
+MVC 패턴의 Controller 역할
+View 와 Model 제어
+Component 를 가질 수 있음
+__ Variable __
++ Component parent = null // 상위 컴포넌트
+__ Method __
++ boolean handleKeyEvent(keyCode)
++ void notifyToParent(option) // 상위 컴포넌트로 이벤트 전달
++ void notifyFromChild(option) // 하위 컴포넌트로 받은 이벤트
+}
+
+'View <|-- Component
+
+@enduml
